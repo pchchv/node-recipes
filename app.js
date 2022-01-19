@@ -15,7 +15,7 @@ app.use(cookieParser());
 app.set('view engine', 'ejs');
 
 // database connection
-let pass = fs.readFileSync("login.txt", "utf8").split(' ');
+const pass = fs.readFileSync("login.txt", "utf8").split(' ');
 const dbURI = `mongodb+srv://${pass[0]}:${pass[1]}@nodetuts.ufztg.mongodb.net/${pass[2]}`;
 mongoose.connect(dbURI, { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex:true })
   .then((result) => app.listen(3000))
