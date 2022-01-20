@@ -5,7 +5,6 @@ const User = require('../models/User');
 const secret = fs.readFileSync("secret.txt", "utf8");
 const requireAuth = (req, res, next) => {
   const token = req.cookies.jwt;
-
   // check json web token exists & is verified
   if (token) {
     jwt.verify(token, secret, (err, decodedToken) => {
@@ -25,7 +24,6 @@ const requireAuth = (req, res, next) => {
 // check current user
 const checkUser = (req, res, next) => {
   const token = req.cookies.jwt;
-
   if (token) {
     jwt.verify(token, secret, async (err, decodedToken) => {
       if (err) {
@@ -43,4 +41,5 @@ const checkUser = (req, res, next) => {
     next();
   }
 } 
+
 module.exports = { requireAuth, checkUser };
