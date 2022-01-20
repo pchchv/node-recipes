@@ -1,5 +1,6 @@
 const fs = require('fs');
 const jwt = require('jsonwebtoken');
+const User = require('../models/User');
 
 const secret = fs.readFileSync("secret.txt", "utf8");
 const requireAuth = (req, res, next) => {
@@ -22,7 +23,7 @@ const requireAuth = (req, res, next) => {
 };
 
 // check current user
-const checkUser = (erq, res, next) => {
+const checkUser = (req, res, next) => {
   const token = req.cookies.jwt;
 
   if (token) {
